@@ -1,0 +1,13 @@
+# Every change needs the owner's review. Level 2 paths are listed so the reason is visible.
+*                   @francesco-marzano
+
+/config/            @francesco-marzano
+/schemas/           @francesco-marzano
+/eval/              @francesco-marzano
+/.claude/           @francesco-marzano
+/.github/           @francesco-marzano
+/AGENTS.md          @francesco-marzano
+/CLAUDE.md          @francesco-marzano
+/REVIEW.md          @francesco-marzano
+/PROJECT_BRIEF.md   @francesco-marzano
+/justfile           @francesco-marzano

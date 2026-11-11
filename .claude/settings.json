@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(just *)",
+      "Bash(uv run *)",
+      "Bash(pnpm run *)",
+      "Bash(pnpm exec *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git switch *)",
+      "Bash(gh issue view *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh run view *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git push origin main *)",
+      "Bash(wrangler deploy *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/.claude/hooks/session_start.py\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/.claude/hooks/format_file.py\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/.claude/hooks/stop_check.py\"",
+            "timeout": 600
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -4,7 +4,7 @@ Read this file before doing anything in this repository. It explains what we are
 
 The full design lives in `docs/architecture.md`. This brief is the short version: when the two disagree, `docs/architecture.md` wins and you open an issue to fix the brief.
 
-Owner: Francesco Marzano. Last updated: 8 November 2026 (aligned with the technical design, revision 59).
+Owner: Francesco Marzano. Last updated: 11 November 2026 (aligned with the technical design, revision 59, and with the M0 scaffold).
 
 ---
 
@@ -154,7 +154,7 @@ No adjectives, no verbs that attribute intentions.
 Reference files are frozen with date and version in `config/reference/`.
 
 **Polite fetching**
-- User-Agent `PuntoCiecoBot/1.0` with a link to a page that explains who we are and how to opt out.
+- An identifying User-Agent (its name follows the public name, ADR 0005) with a link to a page that explains who we are and how to opt out.
 - Respect robots.txt (24-hour cache) and **text and data mining reservations**: robots.txt directives and comments, `Content-Signal` lines, TDMRep (`/.well-known/tdmrep.json`, `tdm-reservation` header) and terms of use. An outlet that reserved its rights does not enter the panel without written permission.
 - Conditional GET (ETag, Last-Modified), respect `Cache-Control`.
 - One request at a time per domain, at most 16 in parallel. Timeouts 5 s connect, 15 s read, responses up to 5 MB, at most 3 redirects, http and https only.
@@ -200,7 +200,7 @@ GitHub Actions: pipeline.yml (Python 3.12, timeout 15 min, one run at a time)
     site       build hot pages, deploy, cache purge
     edition    composed in the 06:30 run: page, RSS item, Telegram text
 
-web/ (Astro 6, Preact islands, Tailwind CSS v4, TypeScript strict)
+web/ (Astro, Preact islands, Tailwind CSS v4, TypeScript strict)
   static pages for the last 14 days on Workers static assets;
   older archive rendered on demand by the Worker, with CDN cache
 ```
@@ -209,7 +209,7 @@ web/ (Astro 6, Preact islands, Tailwind CSS v4, TypeScript strict)
 
 **Stack**
 - Pipeline: Python 3.12, uv, httpx, feedparser, defusedxml, pydantic v2, Typer, structlog, `lingua-py`, `BAAI/bge-m3` via ONNX Runtime quantized to 8 bit (revision pinned by hash in `config/models.yaml`; fallback `multilingual-e5-small`), HDBSCAN from scikit-learn, SQLite, Parquet, pytest, Hypothesis, ruff, mypy strict.
-- Web: Astro 6, Preact islands, globe.gl (three.js) for the globe with an SVG fallback, Tailwind CSS v4, TypeScript strict, pnpm, Biome, Vitest, Playwright.
+- Web: Astro (major version: ADR 0006), Preact islands, globe.gl (three.js) for the globe with an SVG fallback, Tailwind CSS v4, TypeScript strict, pnpm, Biome, Vitest, Playwright.
 - Hosting: Cloudflare Workers with static assets, R2, DNS. GitHub Actions is free for standard runners on public repositories. Monitoring with healthchecks.io.
 - Data contract: pydantic models generate the JSON Schemas in `schemas/` and the TypeScript types. The web reads only published JSON.
 
@@ -227,7 +227,7 @@ TASKS.md             plan and state of the current step, written by the agent
 PROJECT_BRIEF.md     this file
 .claude/             settings.json (permissions, deny rules, hooks), rules/, skills/, agents/
 config/              sources, metrics, models, wires, categories, countries, relevance/, reference/
-pipeline/            Python package (src/puntocieco/), tests/ (unit, property, contracts, golden/), local AGENTS.md
+pipeline/            Python package (src/world_news_reality/, CLI `wnr`), tests/ (unit, property, contracts, golden/), local AGENTS.md
 web/                 Astro site and tests, local AGENTS.md
 workers/cron/        Worker cron in TypeScript
 schemas/             JSON Schemas generated from the pydantic models
@@ -235,7 +235,7 @@ eval/                labelled samples (work and validation splits), program.md, 
 docs/                architecture.md, metodo.md (IT), fonti.md (IT), runbook, decisions/ (ADRs, EN)
 .github/             workflows (ci, pipeline, deploy, nightly, release), issue and PR templates, CODEOWNERS
 .devcontainer/       same environment for WSL, Codespaces and cloud sessions
-justfile             setup, check, verify, eval, pipeline-once, web-dev, fixtures-refresh, autopilot
+justfile             setup, check, verify, schemas, fmt, web-dev (more commands arrive with their milestones)
 README.md (IT + EN), LICENSE (Apache-2.0), DATA_LICENSE (CC BY 4.0), NOTICE, CITATION.cff
 /data                gitignored; local runs only
 ```
@@ -312,7 +312,7 @@ README.md (IT + EN), LICENSE (Apache-2.0), DATA_LICENSE (CC BY 4.0), NOTICE, CIT
 |---|---|---|
 | `just check` | under 3 min | Lint, types, unit, property and contract tests, no network (`pytest-socket`) |
 | `just verify` | under 15 min | Integration on fixtures, golden results, Playwright on three engines, visual regression, axe, Lighthouse |
-| `just eval` | 5-20 min | Labelled samples with confidence intervals; a drop of more than 2 points blocks the merge |
+| `just eval` (from M3, with the first labelled sample) | 5-20 min | Labelled samples with confidence intervals; a drop of more than 2 points blocks the merge |
 
 **Other rules**
 - Small, reviewable pull requests, one milestone step each, Conventional Commits, squash merge on protected `main`.

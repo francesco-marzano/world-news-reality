@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software or its data, please cite it as below."
+type: software
+title: "World News Reality"
+abstract: >-
+  An open-source project that measures which world news stories are covered by many
+  countries and left out by Italian media, with public formulas and downloadable data.
+authors:
+  - family-names: Marzano
+    given-names: Francesco
+repository-code: "https://github.com/francesco-marzano/world-news-reality"
+license: Apache-2.0
+version: 0.1.0
+date-released: "2026-11-11"
+keywords:
+  - news
+  - media coverage
+  - Italy
+  - open data

@@ -1,0 +1,22 @@
+Data licence
+============
+
+The data published by World News Reality (story metrics, blind-spot lists, daily
+snapshots and the JSON Schemas that describe them) is licensed under the
+Creative Commons Attribution 4.0 International licence (CC BY 4.0).
+
+Full text: https://creativecommons.org/licenses/by/4.0/legalcode
+Summary:   https://creativecommons.org/licenses/by/4.0/
+
+You may copy, redistribute and adapt the data for any purpose, including commercially,
+as long as you give appropriate credit, link to the licence and say if you changed it.
+
+Suggested credit: "World News Reality, https://github.com/francesco-marzano/world-news-reality, CC BY 4.0".
+
+What this licence does not cover:
+
+- the source code, which is under the Apache License 2.0 (see LICENSE);
+- headlines and other material of the news outlets, which remain the property of their
+  publishers and are not part of the open dataset;
+- third-party reference data, which keeps its own licence. Attributions are listed in
+  docs/fonti.md once the first dataset is published.

@@ -1,6 +1,8 @@
 # Punto Cieco · Documento tecnico di progetto
 
 > Versione per il repository del documento tecnico di progetto (revisione 59, 8 novembre 2026). Le decisioni aperte della sezione 22 restano a Francesco.
+>
+> Due punti sono cambiati dopo questa revisione e valgono le decisioni in `docs/decisions/`: il pacchetto Python si chiama `world_news_reality` e non `puntocieco` (ADR 0005), e il sito parte da Astro 7 e non da Astro 6 (ADR 0006).
 
 Nov 7, 2026 · @Francesco Marzano
 

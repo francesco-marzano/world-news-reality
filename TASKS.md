@@ -20,8 +20,9 @@ Proof: `just verify` passes locally.
 - Left out of M0 on purpose, because nothing can test them yet: devcontainer, the
   `ui-verifier` and `method-auditor` subagents, the other skills. Add each with the
   milestone that gives it something to check.
-- GitHub settings still to apply by the owner: a ruleset protecting `main` (required
-  checks `pipeline`, `web`, `repo`, `secrets`; linear history; squash merge).
+- `main` is protected by the ruleset `protect-main` since 2026-11-11: changes arrive only
+  through a pull request with the checks `pipeline`, `web`, `repo` and `secrets` green,
+  merged by squash. The first CI run on `main` passed.
 - ADR 0003 (hosting) and ADR 0005 (code name and public name) are `proposed`: they need
   the owner's decision.
 - Next step: M1, `sources.yaml` schema and the source check command. Open an issue with

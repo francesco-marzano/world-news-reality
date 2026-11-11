@@ -1,0 +1,29 @@
+# secrets and local state
+.env
+.env.*
+!.env.example
+secrets/
+data/
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
+dist/
+
+# node
+node_modules/
+web/dist/
+web/.astro/
+
+# agent and editor state
+.claude/settings.local.json
+.claude/.cache/
+CLAUDE.local.md
+.DS_Store

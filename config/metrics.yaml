@@ -1,0 +1,20 @@
+# Parameters of the published method. Every value here changes public numbers:
+# edit only through the method-change flow (ADR + new method_version).
+# Defaults are starting points, to be calibrated on two weeks of real data (M11).
+method_version: "0.1.0"
+
+window_hours: 36            # a story stays active while it gets articles within this window
+dup_threshold: 0.90         # title+snippet similarity above which two articles are one voice
+min_story_countries: 2      # a story is shown only with articles from this many countries
+
+bs_min_countries: 8         # blind spot: countries covering the story
+bs_min_own_countries: 4     # blind spot: countries with a non-wire, non-state voice
+bs_max_it_outlets: 1        # blind spot: Italian outlets with any article, wire copy included
+panel_health_min: 0.8       # share of Italian feeds that must be updating
+grace_hours: 6              # candidate -> confirmed after this many hours
+gdelt_timeout_hours: 12     # confirm with a note if GDELT has not answered by then
+
+location_min_share: 0.40    # below this share of votes the location is "global or uncertain"
+relevance_normalization: log
+excluded_categories:
+  - sport

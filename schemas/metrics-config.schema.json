@@ -1,0 +1,99 @@
+{
+  "additionalProperties": false,
+  "description": "Parameters of the blind-spot method. See PROJECT_BRIEF.md, section 3.",
+  "properties": {
+    "bs_max_it_outlets": {
+      "minimum": 0,
+      "title": "Bs Max It Outlets",
+      "type": "integer"
+    },
+    "bs_min_countries": {
+      "minimum": 2,
+      "title": "Bs Min Countries",
+      "type": "integer"
+    },
+    "bs_min_own_countries": {
+      "minimum": 1,
+      "title": "Bs Min Own Countries",
+      "type": "integer"
+    },
+    "dup_threshold": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Dup Threshold",
+      "type": "number"
+    },
+    "excluded_categories": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Excluded Categories",
+      "type": "array"
+    },
+    "gdelt_timeout_hours": {
+      "maximum": 72,
+      "minimum": 1,
+      "title": "Gdelt Timeout Hours",
+      "type": "integer"
+    },
+    "grace_hours": {
+      "maximum": 72,
+      "minimum": 0,
+      "title": "Grace Hours",
+      "type": "integer"
+    },
+    "location_min_share": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Location Min Share",
+      "type": "number"
+    },
+    "method_version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "title": "Method Version",
+      "type": "string"
+    },
+    "min_story_countries": {
+      "minimum": 2,
+      "title": "Min Story Countries",
+      "type": "integer"
+    },
+    "panel_health_min": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Panel Health Min",
+      "type": "number"
+    },
+    "relevance_normalization": {
+      "enum": [
+        "log",
+        "rank"
+      ],
+      "title": "Relevance Normalization",
+      "type": "string"
+    },
+    "window_hours": {
+      "maximum": 168,
+      "minimum": 1,
+      "title": "Window Hours",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "method_version",
+    "window_hours",
+    "dup_threshold",
+    "min_story_countries",
+    "bs_min_countries",
+    "bs_min_own_countries",
+    "bs_max_it_outlets",
+    "panel_health_min",
+    "grace_hours",
+    "gdelt_timeout_hours",
+    "location_min_share",
+    "relevance_normalization",
+    "excluded_categories"
+  ],
+  "title": "MetricsConfig",
+  "type": "object"
+}
